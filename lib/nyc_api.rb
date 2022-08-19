@@ -11,8 +11,14 @@ class GetPrograms
     response = Net::HTTP.get_response(uri)
     response.body
   end
+  def program_school
+	JSON.parse(self.get_programs).map do |program|
+		program['agency']
+    end
+   end
 
 end
 
-programs = GetPrograms.new.get_programs
-puts programs
+programs = GetPrograms.new
+puts programs.program_school
+
